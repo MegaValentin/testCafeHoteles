@@ -1,20 +1,22 @@
 import { Selector } from 'testcafe';
 
-fixture`Footer Test`
+fixture`Footer Responsive Test`
   .page`http://localhost:3002`; // Cambia la URL según sea necesario
 
-test('Verificar elementos en el footer', async t => {
-  // Verifica que el logo de botones esté presente
-  await t.expect(Selector('img[src*="botones.svg"]').exists).ok();
+test('Verificar responsividad del footer', async t => {
+  // Define los anchos de pantalla para simular
+  const anchosDePantalla = [320, 768, 1024]; // Puedes añadir más tamaños si lo deseas
 
-  // Verifica que el texto sobre los estudiantes esté presente
-  await t.expect(Selector('p').withText('Somos estudiantes de la Tecnicatura Superior de Software').exists).ok();
+  for (const ancho of anchosDePantalla) {
+    await t.resizeWindow(ancho, 800); // Cambia la altura según sea necesario
 
-  // Verifica que los enlaces a las redes sociales estén presentes
-  await t.expect(Selector('img[src*="instagram.svg"]').exists).ok();
-  await t.expect(Selector('img[src*="linkedin.svg"]').exists).ok();
-  await t.expect(Selector('img[src*="gitHub.svg"]').exists).ok();
-
-  // Verifica que el texto de copyright esté presente
-  await t.expect(Selector('small').withText('© 23/10/2023 Los pibes - I27').exists).ok();
+    // Verifica que los elementos del footer sean visibles
+    await t.expect(Selector('footer').visible).ok();
+    await t.expect(Selector('img[src*="botones.svg"]').visible).ok();
+    await t.expect(Selector('p').withText('Somos estudiantes de la Tecnicatura Superior de Software').visible).ok();
+    await t.expect(Selector('img[src*="instagram.svg"]').visible).ok();
+    await t.expect(Selector('img[src*="linkedin.svg"]').visible).ok();
+    await t.expect(Selector('img[src*="gitHub.svg"]').visible).ok();
+    await t.expect(Selector('small').withText('© 23/10/2023 Los pibes - I27').visible).ok();
+  }
 });
