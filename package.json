@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "testcafe chrome test/",
-    "onetest": "testcafe chrome test/footer.test.js"
+    "onetest": "testcafe chrome test/habitaciones.test.js"
   },
   "author": "",
   "license": "ISC",

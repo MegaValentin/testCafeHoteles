@@ -1,11 +1,11 @@
 import { Selector } from 'testcafe';
 
 fixture`Hoteles Test`
-  .page`http://localhost:3002/hoteles`; 
+  .page`http://localhost:3002/`; 
 
     test('Verificar elementos en la página de hoteles', async t => {
   
-  await t.expect(Selector('h1').withText('Habitacion').exists).ok();
+  await t.expect(Selector('h1').withText('Habitaciones').exists).ok();
 
   
   const imagenes = Selector('img');
